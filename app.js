@@ -1,49 +1,29 @@
-import {Box} from './shapes/Box.js'
-import {TextBox} from './shapes/TextBox.js';
+import {Box} from './shapes/Box.js' 
 import {CanvasStage} from './canvas/CanvasStage.js' 
 
-window.addEventListener("load",function(){
+function main(){ 
     const canvas = document.querySelector("canvas"); 
     const ctx = canvas.getContext("2d");
-    const stage = new CanvasStage(canvas);
 
-    const b2 = new TextBox(50, 50, 100, 100, ctx, "Hello world");
-    const b3 = new TextBox(150, 190, 100, 100, ctx, "");
-    b2.drawTextBox();
-    b3.drawTextBox(); 
+    const stage = new CanvasStage(canvas); 
 
-    b2.onHover(function(){ 
-        if(b2.isHoveredOn){
-            // delete box from canvas visually 
-            b2.clearBox();
-            b2.drawBox("green"); 
-        }else{
-            // redraw
-            b2.clearBox(); 
-            b2.drawBox(); 
-        }
-    }, [])
+    // args = x, y, width, height, ctx, draggable (boolean) 
+    const b2 = new Box(50, 50, 100, 100, ctx, false); 
+    const b3 = new Box(150, 190, 100, 100, ctx, true); 
 
-    b3.onHover(function(){
-        if(b3.isHoveredOn){
-            // delete box from canvas visually 
-            b3.clearBox();
-            b3.drawBox("blue"); 
-        }else{
-            // redraw 
-            b3.clearBox(); 
-            b3.drawBox(); 
-        }
-    }, []);
+    b2.drawBox();
+    b3.drawBox();
 
-    b3.onDrag(function(e){
-        console.log("dragging b3 !"); 
-    }, [])
+    b2.onHover(() => console.log(`mouse${b2.isHoveredOn?'enter':'leave'}`), []);  
+
+    b3.onDrag(()=>console.log("dragging b3"), []); 
+    b2.onClick(()=> console.log("clicked b2!"), []);  
 
     stage.addObject(b2);
     stage.addObject(b3); 
 
-}); 
+}
+window.addEventListener("load", main);   
 
 
 

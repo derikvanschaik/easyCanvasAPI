@@ -13,7 +13,8 @@ class CanvasStage{
             if (inBoundingBox(e.offsetX, e.offsetY, obj.x, obj.y, obj.w, obj.h)){
                 obj.isDragging = true;
                 obj.dragOffsetX = e.offsetX; 
-                obj.dragOffsetY = e.offsetY;  
+                obj.dragOffsetY = e.offsetY;
+                break; 
             }
         }
     }
@@ -22,7 +23,7 @@ class CanvasStage{
 
         for(const obj of this.objects){ 
             const hoveredStatus = obj.isHoveredOn;
-            const isDragging = obj.isDragging;
+            const isDragging = obj.isDragging && obj.draggable; 
             // drag event 
             if(isDragging){
                 obj.clearBox();
@@ -30,7 +31,7 @@ class CanvasStage{
                 obj.x += e.offsetX -obj.dragOffsetX; 
                 obj.y += e.offsetY - obj.dragOffsetY; 
                 obj.dragOffsetX = e.offsetX; 
-                obj.dragOffsetY = e.offsetY; 
+                obj.dragOffsetY = e.offsetY;
 
                 obj.drawBox();
                 obj.handleDragEvent();   
@@ -54,7 +55,9 @@ class CanvasStage{
     handleMouseUp(e){
         for(const obj of this.objects){
             if (inBoundingBox(e.offsetX, e.offsetY, obj.x, obj.y, obj.w, obj.h)){
-                obj.isDragging = false; 
+                obj.isDragging = false;
+                obj.handleClickEvent(); 
+                break; 
             }
         }
     }

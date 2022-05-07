@@ -1,17 +1,20 @@
 class Box{
-    constructor(x, y,h, w, ctx){ 
+    constructor(x, y,h, w, ctx, draggable){ 
         this.x = x; 
         this.y = y;
         this.h = h;
         this.w = w; 
-        this.ctx = ctx; 
+        this.ctx = ctx;
+        this.draggable = draggable; 
+
         this.isHoveredOn = false;
         this.isDragging = false;
         this.dragOffsetX = null; 
         this.dragOffsetY = null; 
         // callback functions added by user 
         this.handleHover = null;
-        this.handleDrag = null; 
+        this.handleDrag = null;
+        this.handleClick = null; 
     }
     clearBox(){
         this.ctx.clearRect(this.x, this.y, this.w, this.h);  
@@ -30,9 +33,18 @@ class Box{
     onDrag(callback, args){ 
         this.handleDrag = {callback, args}; 
     }
+    onClick(callback, args){
+        this.handleClick = {callback, args}; 
+    }
+    // stage calls to execute user defined callback functions after event 
     handleDragEvent(){ 
         if(this.handleDrag){
             this.handleDrag.callback(...this.handleDrag.args); 
+        }
+    }
+    handleClickEvent(){ 
+        if(this.handleClick){
+            this.handleClick.callback(...this.handleClick.args); 
         }
     }
     toggleIsHoveredOn(){

@@ -1,8 +1,8 @@
 import {Box} from './Box.js'; 
 
 class TextBox extends Box{
-    constructor(x, y, h, w, ctx, text){ 
-        super(x, y, h, w, ctx); 
+    constructor(x, y, h, w, ctx, draggable, text){ 
+        super(x, y, h, w, ctx, draggable);  
         this.text = text;  
     }
     drawTextBox(){ 
