@@ -55,7 +55,7 @@ class CanvasStage{
     }
     handleMouseUp(e){
         for(const obj of this.objects){
-            if (inBoundingBox(e.offsetX, e.offsetY, obj.x, obj.y, obj.w, obj.h)){
+            if (inBoundingBox(e.offsetX, e.offsetY, obj.x, obj.y, obj.w, obj.h)){ 
                 obj.isDragging = false;
                 obj.handleClickEvent(); 
                 break; 
@@ -64,6 +64,9 @@ class CanvasStage{
     }
     addObject(obj){
         this.objects.push(obj); 
-    } 
+    }
+    removeObject(obj){
+        this.objects = this.objects.filter(o => o !== obj); 
+    }
 }
 export {CanvasStage} 
