@@ -4,16 +4,17 @@ class CanvasStage{
     constructor(el){ 
         this.el = el; 
         this.objects = [];
-        this.el.addEventListener("mousemove",this.handleMouseMove.bind(this));
+        this.el.addEventListener("mousemove",this.handleMouseMove.bind(this)); 
         this.el.addEventListener("mousedown", this.handleMouseDown.bind(this));
         this.el.addEventListener("mouseup", this.handleMouseUp.bind(this)); 
     }
     handleMouseDown(e){
+        // there will be an issue here with objects which are not squares for the bounding box... 
         for(const obj of this.objects){
             if (inBoundingBox(e.offsetX, e.offsetY, obj.x, obj.y, obj.w, obj.h)){
                 obj.isDragging = true;
                 obj.dragOffsetX = e.offsetX; 
-                obj.dragOffsetY = e.offsetY;
+                obj.dragOffsetY = e.offsetY; 
                 break; 
             }
         }
