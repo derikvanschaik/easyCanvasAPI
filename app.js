@@ -1,5 +1,5 @@
-import {Box} from './shapes/Box.js' 
-import {CanvasStage} from './canvas/CanvasStage.js' 
+import {Box} from './easyCanvas/shapes/Box.js' 
+import {CanvasStage} from './easyCanvas/canvas/CanvasStage.js' 
 
 function main(){ 
     const canvas = document.querySelector("canvas"); 
