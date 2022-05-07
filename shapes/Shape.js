@@ -4,7 +4,8 @@ class Shape{
         this.y = y;
 
         this.ctx = ctx;
-        this.draggable = draggable; 
+        this.draggable = draggable;
+        this.dragPath = []; 
 
         this.isHoveredOn = false;
         this.isDragging = false;
