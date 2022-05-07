@@ -6,7 +6,7 @@ class Box extends Shape{
         this.h = h;
         this.w = w;  
     }
-    clearBox(){
+    clearBox(){ 
         this.ctx.clearRect(this.x, this.y, this.w, this.h);  
     }
     drawBox(color){ 

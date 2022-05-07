@@ -1,7 +1,7 @@
 import {inBoundingBox} from '../utils/inBoundingBox.js'; 
 
 class CanvasStage{ 
-    constructor(el){ 
+    constructor(el){  
         this.el = el; 
         this.objects = [];
         this.el.addEventListener("mousemove",this.handleMouseMove.bind(this)); 
@@ -27,7 +27,7 @@ class CanvasStage{
             const isDragging = obj.isDragging && obj.draggable; 
             // drag event 
             if(isDragging){
-                obj.clearBox();
+                obj.clearBox(); 
 
                 obj.x += e.offsetX -obj.dragOffsetX; 
                 obj.y += e.offsetY - obj.dragOffsetY; 
@@ -40,7 +40,7 @@ class CanvasStage{
             // TODO: implement collision algorithm here....  
 
             // hover in and out events 
-            if (inBoundingBox(e.offsetX, e.offsetY, obj.x, obj.y, obj.w, obj.h)){
+            if (inBoundingBox(e.offsetX, e.offsetY, obj.x, obj.y, obj.w, obj.h)){ 
                 if(!hoveredStatus){
                     obj.toggleIsHoveredOn();
                 }
