@@ -41,8 +41,18 @@ function main(){
             // selected is box, should turn editing off and reset selected 
             selected.toggleEditing(); 
             selected = null;  
+        }, []);
+
+        box.onEdit(function(){ 
+            // will output the text that the box has after an edit 
+            console.log(box.getValue());     
         }, []); 
-    })
+    }); 
+
+    // sometimes the objects get dragged over and erased... this will take care of that for now 
+    stage.onChange(function(){
+        stage.update(stage.objects); 
+    }, []); 
 
     // add the objects to the stage, this allows the api to keep track of the objects 
     // and handle their event listeners and fire them. 

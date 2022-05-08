@@ -16,7 +16,7 @@ class Shape{
         this.handleDrag = null;
         this.handleClick = null; 
     }
-        // PARAMS: callback: function, args: list of args to pass into callback 
+    // PARAMS: callback: function, args: list of args to pass into callback  
     // NOTE: pass in an empty function if no args as args param  
     onHover(callback, args){ 
         this.handleHover = {callback, args};  

@@ -115,7 +115,11 @@ class CanvasStage{
         this.objects = newObjects; 
         this.ctx.clearRect(0 , 0, this.el.width, this.el.height); 
         for(const obj of this.objects){
-            obj.drawBox(); 
+            if(obj.name === "box"){
+                obj.drawBox(); 
+            }else if (obj.name === "textbox"){
+                obj.drawTextBox(); 
+            }
         }
     }
 }
