@@ -2,8 +2,9 @@ import {inBoundingBox} from '../utils/inBoundingBox.js';
 
 class CanvasStage{ 
     constructor(el, ctx){  
-        this.el = el;
-        this.ctx = ctx; 
+        this.el = el; 
+        this.ctx = ctx;
+        this.createCtxConfigs(); 
         this.objects = []; 
         this.el.addEventListener("mousemove",this.handleMouseMove.bind(this)); 
         this.el.addEventListener("mousedown", this.handleMouseDown.bind(this));
@@ -11,6 +12,11 @@ class CanvasStage{
         // user defined callback function 
         // Actions registered as 'onChange' events: drag object, add/remove from objects list. 
         this.handleOnChange = null; 
+    }
+    // should not be modified...very crucial to workings of textbox.js 
+    createCtxConfigs(){
+        this.ctx.font = '25pt arial';
+        this.ctx.textBaseline = 'top';   
     }
     onChange(callback, args){  
         this.handleOnChange = {callback, args}; 
@@ -41,8 +47,11 @@ class CanvasStage{
             // drag event 
             if(isDragging){
 
-                obj.clearBox(); 
-
+                if(obj.name === "textbox"){
+                    obj.clearBox(2, 2); 
+                }else if (obj.name === "box"){
+                    obj.clearBox(); 
+                }
                 obj.x += e.offsetX -obj.dragOffsetX; 
                 obj.y += e.offsetY - obj.dragOffsetY; 
                 obj.dragOffsetX = e.offsetX; 
@@ -50,9 +59,13 @@ class CanvasStage{
 
                 // values are not used anywhere now except for length of the array so far
                 // keeping as they may still be useful for other features later on 
-                obj.dragPath.push([obj.dragOffsetX, obj.dragOffsetY]); 
+                obj.dragPath.push([obj.dragOffsetX, obj.dragOffsetY]);
 
-                obj.drawBox();
+                if(obj.name === 'textbox'){
+                    obj.drawTextBox(); 
+                }else if (obj.name === 'box'){
+                    obj.drawBox(); 
+                }
                 obj.handleDragEvent();   
             }
             // TODO: implement collision algorithm here....  
@@ -70,8 +83,6 @@ class CanvasStage{
         }
         // redraw all collided objects 
         collidedObjects.forEach(obj => obj.drawBox());
-        // handle user defined on change event 
-
     }
     handleMouseUp(e){
         for(const obj of this.objects){
