@@ -39,7 +39,7 @@ class CanvasStage{
         }
     }
     handleMouseMove(e){
-        const collidedObjects = [];
+        let draggedObj = null; 
 
         for(const obj of this.objects){ 
             const hoveredStatus = obj.isHoveredOn;
@@ -66,10 +66,8 @@ class CanvasStage{
                 }else if (obj.name === 'box'){
                     obj.drawBox(); 
                 }
-                obj.handleDragEvent();   
+                draggedObj = obj;  
             }
-            // TODO: implement collision algorithm here....  
-
             // hover in and out events 
             if (inBoundingBox(e.offsetX, e.offsetY, obj.x, obj.y, obj.w, obj.h)){ 
                 if(!hoveredStatus){
@@ -81,8 +79,9 @@ class CanvasStage{
                 }
             }
         }
-        // redraw all collided objects 
-        collidedObjects.forEach(obj => obj.drawBox());
+        if(draggedObj){
+            draggedObj.handleDragEvent();  
+        }
     }
     handleMouseUp(e){
         for(const obj of this.objects){
