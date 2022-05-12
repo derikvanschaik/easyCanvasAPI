@@ -42,7 +42,7 @@ class CanvasStage{
         let draggedObj = null; 
 
         for(const obj of this.objects){ 
-            const hoveredStatus = obj.isHoveredOn;
+            const hoveredStatus = obj.isHoveredOn; 
             const isDragging = obj.isDragging && obj.draggable; 
             // drag event 
             if(isDragging){

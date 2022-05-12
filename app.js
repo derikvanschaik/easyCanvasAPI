@@ -14,7 +14,6 @@ function main(){
     const t = new TextBox(50, 50, 100, 100, ctx, true, "Hello World"); 
     const t2 = new TextBox(150, 190, 100, 100, ctx, true, "Example\nhaha isn't this cool?"); 
     const t3 = new TextBox(400, 100, 100, 200, ctx, true, "Box over here!");
-
     const b = new Box(200, 200, 100, 100, ctx, true); 
     
     // draw the text boxes onto the canvas using their methods 
