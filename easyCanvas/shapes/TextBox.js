@@ -29,6 +29,9 @@ class TextBox extends Box{
         this.w = maxLine;
         this.ctx.strokeRect(this.x, this.y, this.w, this.h); 
     }
+    draw(){
+        this.drawTextBox(); 
+    }
     redrawTextBox(){
         this.clearBox(2, 2); 
         this.drawTextBox();

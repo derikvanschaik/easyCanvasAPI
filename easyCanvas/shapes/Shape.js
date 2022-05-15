@@ -44,6 +44,7 @@ class Shape{
             this.handleHover.callback(...this.handleHover.args); 
         }
     }
+    
 
 }
 export{ Shape } 

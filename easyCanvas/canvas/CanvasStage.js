@@ -64,7 +64,7 @@ class CanvasStage{
                 if(obj.name === 'textbox'){
                     obj.drawTextBox(); 
                 }else if (obj.name === 'box'){
-                    obj.drawBox(); 
+                    obj.drawBox();   
                 }
                 draggedObj = obj;  
             }
@@ -114,11 +114,7 @@ class CanvasStage{
         this.objects = newObjects; 
         this.ctx.clearRect(0 , 0, this.el.width, this.el.height); 
         for(const obj of this.objects){
-            if(obj.name === "box"){
-                obj.drawBox(); 
-            }else if (obj.name === "textbox"){
-                obj.drawTextBox(); 
-            }
+            obj.draw(); 
         }
     }
 }
