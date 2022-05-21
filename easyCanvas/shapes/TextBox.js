@@ -8,6 +8,8 @@ class TextBox extends Box{
         this.#text = text;
         this.name = "textbox"; 
         this.editing = false;
+        // default setting for textbox background color 
+        this.color = "white"; 
         // we need this reference here for the window listener 
         // if not there will be a multiple window event listener bug
         // more info here: https://stackoverflow.com/questions/10444077/javascript-removeeventlistener-not-working 
@@ -24,14 +26,10 @@ class TextBox extends Box{
             const [lineWidth, _ ] = getFontDimensions(this.ctx, lines[i]); 
             if(lineWidth > maxLine){
                 maxLine = lineWidth; 
-            }
-            // this.ctx.fillText(lines[i], this.x, this.y + (i * lineHeight));      
+            }    
         }
         this.w = maxLine;
-        const color = this.ctx.fillStyle; 
-        this.ctx.fillStyle = "white"; 
-        this.ctx.fillRect(this.x, this.y, this.w, this.h);
-        this.ctx.fillStyle = color;  
+        this.drawBox(); 
         this.ctx.strokeRect(this.x, this.y, this.w, this.h);
         // draw lines of text
         for(let i = 0; i < lines.length; i++){
